@@ -3,9 +3,9 @@
   	  {
   	  	"service_name" : "HDFS", 
   	  	"component_name" : "NAMENODE",
-  	  	"name": "hdfs_quota",
-        "label": "HDFS QUOTA",
-        "description": "This alert is triggered if quota capacity is reach. It checks the cpacity using WebHDFS. The threshold values are in percent.",
+  	  	"name": "hdfs_quota_user_{edit_user_name}",
+        "label": "HDFS QUOTA {edit_user_name}",
+        "description": "This alert is triggered if quota capacity for the user {edit_user_name} is reach. It checks the capacity using WebHDFS. The threshold values are in percent.",
         "interval": 1,
         "scope": "SERVICE",
         "enabled": true,
@@ -16,7 +16,7 @@
             {
               "name": "location.quota",
               "display_name": "Path to monitor",
-              "value": "/application/digital",
+              "value": "/user/{edit_user_name}",
               "type": "STRING",
               "description": "Folder to monitor for QUOTA"
             },
