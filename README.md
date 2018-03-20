@@ -1,9 +1,9 @@
 # ambari-custom-alerts
 
 In order to set an ambari Alert for HDFS quota for user you need to have:
-* An [alert Target](/spaceQuota/alert-targets.md)
-* An [alert definition](/spaceQuota/alert-definitions.md)
-* An [alert Group](/spaceQuota/alert-dispatching.md)
+* An [alert definition](/spaceQuota/alert-definitions)
+* An [alert Target](/spaceQuota/alert-targets)
+* An [alert Group](/spaceQuota/alert-groups)
 
 In the alert group is where you indicate to what targets (people in your organization) want to issue a notification in accordance with the alert states in your alert targets. [OK, WARNING, CRITICAL, etc]
 
