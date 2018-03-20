@@ -1,6 +1,6 @@
 # ambari-custom-alerts
 
-In order to set an ambari Alert for HDFS quota for user you need to have:
+In order to set an ambari Alert for [HDFS quota for user](https://github.com/DanielIzquierdo/HDFS-quota-groups) you need to have:
 * An [alert definition](/spaceQuota/alert-definition)
 * An [alert Target](/spaceQuota/alert-targets)
 * An [alert Group](/spaceQuota/alert-groups)

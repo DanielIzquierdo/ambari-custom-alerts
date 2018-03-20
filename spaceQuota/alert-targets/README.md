@@ -42,6 +42,10 @@ The following is a list of target types and the valid properties that they accep
 ##### Create Request
 In this example, several JavaMail properties are specified in order for this target to connect and authenticate with the SMTP relay. If the target was not global, any existing groups could be included as well when creating the target.
 
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X POST -d @alert-targets.json http://<AMBARI_CLUSTER>:8080/api/v1/alert_targets
+```
+###### example
     POST api/v1/alert_targets
     
     {
@@ -50,22 +54,29 @@ In this example, several JavaMail properties are specified in order for this tar
         "description": "The Admins",
         "notification_type": "EMAIL",
         "global": true,
+        "alert_states": ["WARNING","CRITICAL"],
         "properties":{
-          "ambari.dispatch.credential.username":"ambari",
-          "ambari.dispatch.credential.password":"password",
-          "ambari.dispatch.recipients":["ambari@relay.ambari.apache.org"],
-          "mail.smtp.host":"relay.ambari.apache.org",
+          "ambari.dispatch.credential.username":"domain_admin_user",
+          "ambari.dispatch.credential.password":"domain_admin_password",
+          "ambari.dispatch.recipients":["user1@domain.com","user2@domain.com"],
+          "mail.smtp.host":"host.domain.com",
           "mail.smtp.port":"25",
           "mail.smtp.auth":"true",
           "mail.smtp.starttls.enable":"false",
-          "mail.smtp.from":"ambari@relay.ambari.apache.org"
+          "mail.smtp.from":"ambari_alert_email@domain.com"
         }
       }
     }
 
+
 ##### Update Request
 Alert targets can be updated with a partial body. Properties which are not specified are assumed to not change. 
 
+
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X PUT -d @alert-targets.json http://<AMBARI_CLUSTER>:8080/api/v1/alert_targets/<ALERT_TARGET_ID>
+```
+###### example
     PUT api/v1/alert_targets/<target-id>
     
     {
@@ -75,12 +86,20 @@ Alert targets can be updated with a partial body. Properties which are not speci
     }
 
 ##### Delete Request
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X DELETE http://<AMBARI_CLUSTER>:8080/api/v1/alert_targets/<ALERT_TARGET_ID>
+```
+###### example
     DELETE api/v1/alert_targets/<target-id>
         
 ##### Query Request
 Targets are not associated with any aspect of a cluster. Therefore their endpoint is defined without any cluster scoping. This allows the same target to be reused for other clusters managed by Ambari.
 
-    GET api/v1/alert_targets
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X GET 
+http://<AMBARI_CLUSTER>:8080/api/v1/alert_targets/<ALERT_TARGET_ID>
+```
+
 
 ##### Query Response
 The target from the query has the following attributes:
@@ -88,7 +107,7 @@ The target from the query has the following attributes:
 * It is associated with the HDFS alert group
 * It will trigger for any of the alert states
 <!-- --> 
-
+###### example
     GET api/v1/alert_targets
     
     {
@@ -138,7 +157,13 @@ Before a target is created, it is possible to have Ambari validate whether the p
 
 ###### Request
 Use the `validate_config` directive to have Ambari connect to the backend dispatcher in order to verify the the target's properties are valid.
+Depending on your version of ambari, the following can be succesfull or not.
 
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X POST
+ http://<AMBARI_CLUSTER>:8080/api/v1/alert_targets?validate_config=true
+```
+###### example
     POST api/v1/alert_targets?validate_config=true
     
     {
@@ -172,6 +197,11 @@ Use the `validate_config` directive to have Ambari connect to the backend dispat
 Notices are read-only and are produced by Ambari in response to alerting events. They are used to maintain an audit trail of the outbound notifications and whether they were successfully delivered to the backend dispatcher.
 
 ##### Request
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X GET
+http://<AMBARI_CLUSTER>:8080/api/v1/clusters/<cluster>/alert_notices
+```
+###### example
     GET api/v1/clusters/<cluster>/alert_notices
     
 ##### Response

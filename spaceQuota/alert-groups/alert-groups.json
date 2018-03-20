@@ -1,0 +1,7 @@
+{
+    "AlertGroup": {
+      "name": "Demo Group",
+      "targets": [1],
+      "definitions": [7, 9, 14]
+    }
+}

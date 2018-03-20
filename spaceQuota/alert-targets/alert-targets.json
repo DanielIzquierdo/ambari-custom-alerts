@@ -1,31 +1,21 @@
-  {
-    
-    "AlertTarget" : {
-      "alert_states" : [
-        "CRITICAL",
-        "WARNING",
-        "UNKNOWN",
-        "OK"
-      ],
-      "description" : "ALERTAS",
-      "enabled" : true,
-      "global" : false,
-      "groups" : [
-        102
-      ],
-      "name" : "ALERTAS TESTING",
-      "notification_type" : "EMAIL",
-      "properties" : {
-        "ambari.dispatch.credential.username" : "CSE-CPH\\administrator",
-        "mail.smtp.port" : "25",
-        "ambari.dispatch.credential.password" : "l0x8Yj!/4c,@Z`FDPj1`",
-        "mail.smtp.auth" : "true",
-        "mail.smtp.from" : "alerta_ambari@compsesa.com.ec",
-        "mail.smtp.starttls.enable" : "false",
-        "mail.smtp.host" : "192.168.5.33",
-        "ambari.dispatch.recipients" : [
-          "daniel.izquierdo@compsesa.com.ec"
-        ]
-      }
+{
+  "AlertTarget": {
+    "name": "Administrators",
+    "description": "The Admins",
+    "notification_type": "EMAIL",
+    "global": false,
+    "enabled": true,
+    "alert_states": ["WARNING","CRITICAL"],
+    "properties":{
+      "ambari.dispatch.credential.username":"domain_admin_user",
+      "ambari.dispatch.credential.password":"domain_admin_password",
+      "ambari.dispatch.recipients":["user1@domain.com","user2@domain.com"],
+      "mail.smtp.host":"host.domain.com",
+      "mail.smtp.port":"25",
+      "mail.smtp.auth":"true",
+      "mail.smtp.starttls.enable":"false",
+      "mail.smtp.from":"ambari_alert_email@domain.com"
     }
   }
+}
+

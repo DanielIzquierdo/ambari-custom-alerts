@@ -29,7 +29,11 @@ To create custom groupings, any number of definitions from any service can be mi
 
 ##### Create Request
 A group can be created with just a name and then updated later with any of its valid properties. 
-
+You **must** modify the file [alert-groups.json](./alert-groups.json) before run this line:
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X POST -d @alert-groups.json http://<AMBARI_CLUSTER>:8080/api/v1/clusters/<cluster>/alert_groups
+```
+###### example
     POST api/v1/clusters/<cluster>/alert_groups
     
     {
@@ -52,6 +56,10 @@ Or it can be created with all valid properties. In this example, a group is bein
 
 
 ##### Update Request
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X PUT -d @alert-groups.json http://<AMBARI_CLUSTER>:8080/api/v1/clusters/<cluster>/alert_groups/<group-id>
+```
+###### example
     POST api/v1/clusters/<cluster>/alert_groups/<group-id>
 
     {
@@ -63,9 +71,17 @@ Or it can be created with all valid properties. In this example, a group is bein
     }
     
 ##### Delete Request
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X DELETE  http://<AMBARI_CLUSTER>:8080/api/v1/clusters/<cluster>/alert_groups/<group-id>
+```
+###### example
     DELETE api/v1/clusters/<cluster>/alert_groups/<group-id>
     
 ##### Query Request
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X GET  http://<AMBARI_CLUSTER>:8080/api/v1/clusters/<cluster>/alert_groups
+```
+###### example
     GET api/v1/clusters/<cluster>/alert_groups
 
 ##### Query Response
@@ -93,6 +109,10 @@ Or it can be created with all valid properties. In this example, a group is bein
     }
 
 ##### Query Request
+```sh
+curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X GET  http://<AMBARI_CLUSTER>:8080/api/v1/clusters/<cluster>/alert_groups/<group-id>
+```
+###### example
     GET api/v1/clusters/<cluster>/alert_groups/<group-id>
 
 ##### Query Response
