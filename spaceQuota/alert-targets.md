@@ -1,3 +1,21 @@
+##### Targets
+Targets are used to notify an interested party that an alert instance has changed state. There are currently two supported target types:
+
+* Email (SMTP)
+* Simple Network Management Protocol (SNMP)
+    * SNMPv1
+    * SNMPv2c
+    * SNMPv3
+    
+Any number of targets can be associated with an alert group (a grouping of definitions). When a definition in the group changes state, all associated targets will be notified. 
+
+There is also a `global` alert target which can be used as a way to produce notifications for any alert defined in Ambari. These `global` targets are never associated with any groups; they apply to all groups and all definitions.
+
+##### Notices
+Once an alert has changed state, Ambari will determine if there are any targets that should receive a notification of the state change. These notifications, or notices, are created with an initial status of `PENDING` and will transition either to `DELIVERED` or `FAILED` once the proper dispatcher has attemped to process the notice. Dispatchers can attempt to aggregate any `PENDING` notices into a single outbound notification.
+
+### API Summary
+
 #### Targets
 Each target type has its own set of properties that are used to configure the backend dispatcher. These properties are typically not shared between targets except for the following global properties:
 
