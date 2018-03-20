@@ -1,6 +1,6 @@
 # Alert definitions
 
-Push the new alert via Ambari REST API. (modify the variable `{edit_user_name}` on alerts.json first)
+Push the new alert via Ambari REST API. (modify the variable `{edit_user_name}` on [alerts.json]((/spaceQuota/alert-definition/alerts.json) first)
 
 ```sh
 curl -u <AMBARI_USER>:<AMBARI_PASSWORD> -i -H 'X-Requested-By: ambari' -X POST -d @alerts.json http://<AMBARI_CLUSTER>:8080/api/v1/clusters/<CLUSTER_NAME>/alert_definitions
